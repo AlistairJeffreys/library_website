@@ -12,7 +12,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
   
   test "should get show" do
-    get "/users/1"
+    get "/users/#{@user.id}"
     assert_response :success
   end
 
