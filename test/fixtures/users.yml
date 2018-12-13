@@ -1,4 +1,32 @@
 kate:
   name: Kate User
   email: kate@example.com
+  library_card_number: 12345678901234
   password_digest: <%= User.digest('password') %>
+  admin: true
+  
+kevin:
+  name: Kevin User
+  email: kevin@example.com
+  library_card_number: 23456789012345
+  password_digest: <%= User.digest('password') %>
+  
+kerry:
+  name: Kerry User
+  email: kerry@example.com
+  library_card_number: 34567890123456
+  password_digest: <%= User.digest('password') %>
+  
+kathy:
+  name: Kathy User
+  email: kathy@example.com
+  library_card_number: 45678901234567
+  password_digest: <%= User.digest('password') %>
+  
+<% 30.times do |n| %>
+user_<%= n %>:
+  name: <%= "User #{n}" %>
+  email: <%= "user-#{n}@example.com" %>
+  library_card_number: <%= Faker::Number.number(14) %>
+  password_digest: <%= User.digest('password') %>
+<% end %>

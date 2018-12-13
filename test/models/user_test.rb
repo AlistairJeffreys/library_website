@@ -4,6 +4,7 @@ class UserTest < ActiveSupport::TestCase
   
   def setup
     @user = User.new(name: "Test User", email: "test@example.com",
+                     library_card_number: "12345678901234",
                      password: "foobar", password_confirmation: "foobar")
   end
   
@@ -76,6 +77,21 @@ class UserTest < ActiveSupport::TestCase
   
   test "password should have a minimum length" do
     @user.password = @user.password_confirmation = "a" * 5
+    assert_not @user.valid?
+  end
+  
+  test "a user must have a library card number" do
+    @user.library_card_number = ""
+    assert_not @user.valid?
+  end
+  
+  test "the library card number must be minimum length 14" do
+    @user.library_card_number = "1"
+    assert_not @user.valid?
+  end
+  
+  test "the library card number must be maximum length 14" do
+    @user.library_card_number = "123456789012345"
     assert_not @user.valid?
   end
   
