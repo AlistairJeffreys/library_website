@@ -1,0 +1,18 @@
+<% provide(:title, @book.title) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="book_info">
+      <h1>
+        <%= book_image_for @book %>
+        <%= @book.title %>
+      </h1>
+      <p>
+        <%= @book.author %>
+        <%= @book.isbn %>
+        <%= @book.description %>
+        <%= @book.genre %>
+        <%= @book.publication_date %>
+        <%= @book.publisher %>
+      </p>
+    </section>
+</div>

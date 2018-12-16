@@ -1,0 +1,8 @@
+book1:
+  title: Flashman's Lady
+  isbn: 1234567897
+  author: George MacDonald Fraser
+  description: None
+  genre: Historical Fiction
+  publication_date: <%= DateTime.strptime("1966", '%Y') %>
+  publisher: Harper Collins

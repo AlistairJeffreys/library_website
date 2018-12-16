@@ -6,6 +6,8 @@
         <li><%= link_to "Home",   root_path, id: "nav-item" %></li>
         <li><%= link_to "Help",   help_path, id: "nav-item" %></li>
         <% if logged_in? %>
+          <li><%= link_to "Add new Book", books_new_path, id: "nav-item" %></li>
+          <li><%= link_to "Books", "#", id: "nav-item" %></li>
           <li><%= link_to "Users", users_path, id: "nav-item" %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" id="nav-item" data-toggle="dropdown">
