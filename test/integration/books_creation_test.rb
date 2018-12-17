@@ -2,7 +2,12 @@ require 'test_helper'
 
 class BooksCreationTest < ActionDispatch::IntegrationTest
   
+  def setup
+    @user = users(:kate)
+  end
+  
   test "invalid book information" do
+    log_in_as(@user)
     get books_new_path
     assert_no_difference 'Book.count' do
       post books_path, params: { book: { title: "",
@@ -14,6 +19,7 @@ class BooksCreationTest < ActionDispatch::IntegrationTest
   end
   
   test "valid signup information" do
+    log_in_as(@user)
     get books_new_path
     assert_difference 'Book.count', 1 do
       post books_path, params: { book: { title: "Test Book",

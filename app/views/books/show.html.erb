@@ -6,13 +6,16 @@
         <%= book_image_for @book %>
         <%= @book.title %>
       </h1>
-      <p>
-        <%= @book.author %>
-        <%= @book.isbn %>
-        <%= @book.description %>
-        <%= @book.genre %>
-        <%= @book.publication_date %>
-        <%= @book.publisher %>
-      </p>
+      <ul>
+        <li><b>Author:</b> <%= @book.author %></li>
+        <li><b>ISBN:</b> <%= @book.isbn %></li>
+        <li><b>Description:</b> <%= @book.description %></li>
+        <li><b>Genre:</b> <%= @book.genre %></li>
+        <li><b>Publication Date:</b> <%= @book.publication_date.year %></li>
+        <li><b>Publisher:</b> <%= @book.publisher %></li>
+        <% if logged_in? && current_user.admin? %>
+          <li><%= link_to "Edit", edit_book_path(@book) %></li>
+        <% end %>
+      </ul>
     </section>
 </div>

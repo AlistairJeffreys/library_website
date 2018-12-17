@@ -1,0 +1,13 @@
+<% provide(:title, 'All books') %>
+<h1>All books</h1>
+<% if logged_in? && current_user.admin? %>
+  <p><%= link_to "Add new Book", books_new_path %></p>
+<% end %>
+
+<%= will_paginate %>
+
+<ul class="books">
+  <%= render @books %>
+</ul>
+
+<%= will_paginate %>

@@ -16,3 +16,28 @@ User.create!(name: "Example User",
                 password:              password,
                 password_confirmation: password )
  end
+ 
+ Book.create!(title: "The Battle of Austerlitz",
+              author: "Charles River Editors",
+              isbn: 9781492923824,
+              description: "",
+              genre: "History",
+              publication_date: DateTime.strptime("2018", '%Y'),
+              publisher: "Amazon")
+          
+100.times do |n|
+  title = Faker::Book.title
+  author = Faker::Book.author
+  isbn = Faker::Number.number(10).to_i + n
+  description = Faker::GameOfThrones.quote
+  genre = Faker::Book.genre
+  publication_date = DateTime.strptime("2018", '%Y')
+  publisher = Faker::Book.publisher
+  Book.create!(title: title,
+               author: author,
+               isbn: isbn,
+               description: description,
+               genre: genre,
+               publication_date: publication_date,
+               publisher: publisher )
+end

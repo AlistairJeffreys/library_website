@@ -1,4 +1,4 @@
-book1:
+book_one:
   title: Flashman's Lady
   isbn: 1234567897
   author: George MacDonald Fraser
@@ -6,3 +6,36 @@ book1:
   genre: Historical Fiction
   publication_date: <%= DateTime.strptime("1966", '%Y') %>
   publisher: Harper Collins
+  
+book_two:
+  title: Anglo-saxon kingdoms
+  isbn: 9780712352024
+  author: Claire Breay
+  description: The Anglo-Saxon period stretches from the arrival of Germanic groups on British shores in the early 5th century to the Norman Conquest of 1066. 
+  genre: History
+  publication_date: <%= DateTime.strptime("2019", '%Y') %>
+  publisher: British Library Publishing
+  
+book_three:
+  title: The nun's tale
+  isbn: 0099427427
+  author: Candace M. Robb
+  description: 
+  genre: Historical Fiction
+  publication_date: <%= DateTime.strptime("2018", '%Y') %>
+  publisher: 
+    
+book_four:
+  title: The beekeeper's promise
+  isbn: 9781542047036
+  author: Fiona Valpy
+  description: Heartbroken and hoping for a new start, Abi Howes takes a summer job in rural France at the Château Bellevue.
+  genre: General Fiction
+  publication_date: <%= DateTime.strptime("2018", '%Y') %>
+  publisher: Lake Union Publishing
+  
+<% 30.times do |n| %>
+user_<%= n %>:
+  title: <%= "Book #{n}" %>
+  isbn: <%= Faker::Number.number(10).to_i + n %>
+<% end %>

@@ -1,0 +1,37 @@
+<% provide(:title, 'Edit Book') %>
+<h1>Update a Book</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@book) do |f| %>
+      <%= render 'shared/book_error_messages' %>
+    
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+      
+      <%= f.label :author %>
+      <%= f.text_field :author, class: 'form-control' %>
+      
+      <%= f.label :isbn %>
+      <%= f.number_field :isbn, class: 'form-control' %>
+      
+      <%= f.label :description %>
+      <%= f.text_field :description, class: 'form-control' %>
+      
+      <%= f.label :genre %>
+      <%= f.text_field :genre, class: 'form-control' %>
+      
+      <%= f.label :publication_date %>
+      <%= f.select :publication_date, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), class: 'form-control' %>
+      
+      <%= f.label :publisher %>
+      <%= f.text_field :publisher, class: 'form-control' %>
+      
+      <%= f.submit "Edit Book", class: "btn btn-primary" %>
+    <% end %>
+    
+    <div class="avatar_edit">
+      <%= book_image_for @book %>
+    </div>
+  </div>
+</div>
