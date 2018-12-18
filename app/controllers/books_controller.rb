@@ -8,6 +8,7 @@ class BooksController < ApplicationController
   
   def show
     @book = Book.find(params[:id])
+    @book_copies = @book.book_copies.paginate(page: params[:page])
   end
   
   def new
@@ -61,15 +62,6 @@ class BooksController < ApplicationController
     end
     
     # Before filters
-    
-    # Confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
     
     # Confirms an admin user
     def admin_user

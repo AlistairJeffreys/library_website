@@ -3,7 +3,6 @@
   <aside class="col-md-4">
     <section class="book_info">
       <h1>
-        <%= book_image_for @book %>
         <%= @book.title %>
       </h1>
       <ul>
@@ -17,5 +16,23 @@
           <li><%= link_to "Edit", edit_book_path(@book) %></li>
         <% end %>
       </ul>
+      <%= book_image_for @book %>
     </section>
+  </aside>
+  <div class="col-md-8">
+    <% if logged_in? && current_user.admin? %>
+      <div class="row">
+        <section class="book_copy_form">
+          <%= render 'shared/book_copy_form' %>
+        </section>
+      </div>
+    <% end %>
+    <% if @book.book_copies.any? %>
+      <h3>Book Copies (<%= @book.book_copies.count %>)</h3>
+      <ol class="book_copies">
+        <%= render @book_copies %>
+      </ol>
+      <%= will_paginate @book_copies %>
+    <% end %>
+  </div>
 </div>

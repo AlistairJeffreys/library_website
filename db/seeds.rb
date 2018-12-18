@@ -41,3 +41,8 @@ User.create!(name: "Example User",
                publication_date: publication_date,
                publisher: publisher )
 end
+
+books = Book.order(:created_at)
+10.times do
+  books.each { |book| book.book_copies.create! }
+end

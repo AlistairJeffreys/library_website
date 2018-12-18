@@ -1,0 +1,12 @@
+<% if @book_copy.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      The form contains <%= pluralize(@book_copy.errors.count, "error") %>
+    </div>
+    <ul>
+    <% @book_copy.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

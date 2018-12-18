@@ -5,4 +5,11 @@
     | <%= link_to "delete", book, method: :delete,
                                   data: { confirm: "Are you sure?" } %>
   <% end %>
+  <ul>
+    <li><b>Author:</b> <%= book.author %></li>
+    <li><b>Genre:</b> <%= book.genre %></li>
+    <% if book.book_copies.any? %>
+      <li>Book Copies (<%= book.book_copies.count %>)</li>
+    <% end %>
+  </ul>
 </li>

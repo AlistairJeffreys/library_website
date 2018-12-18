@@ -1,0 +1,37 @@
+book_copy_one:
+  created_at: <%= 10.minutes.ago %>
+  book: book_one
+  
+book_copy_two:
+  created_at: <%= 3.years.ago %>
+  book: book_one
+  
+book_copy_three:
+  created_at: <%= 2.hours.ago %>
+  book: book_one
+  
+most_recent:
+  created_at: <%= Time.zone.now %>
+  book: book_one
+  
+<% 30.times do |n| %>
+book_copy_<%= n %>:
+  created_at: <%= 42.days.ago %>
+  book: book_one
+<% end %>
+
+book_copy_four:
+  created_at: <%= 2.years.ago %>
+  book: book_two
+  
+book_copy_five:
+  created_at: <%= 3.days.ago %>
+  book: book_two
+  
+book_copy_six:
+  created_at: <%= 10.minutes.ago %>
+  book: book_three
+  
+book_copy_seven:
+  created_at: <%= 4.hours.ago %>
+  book: book_three

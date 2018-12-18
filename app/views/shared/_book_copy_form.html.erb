@@ -1,0 +1,6 @@
+<% @book_copy = BookCopy.new %>
+<%= form_for(@book_copy) do |f| %>
+  <%= render 'shared/book_copy_error_messages' %>
+  <%= f.text_field :book_id, type: "hidden", value: @book.id %>
+  <%= f.submit "Add New Copy", class: "btn btn-primary" %>
+<% end %>

@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   get 'books/new'
   resources :users
   resources :books
+  resources :book_copies, only: [:create, :destroy]
 end

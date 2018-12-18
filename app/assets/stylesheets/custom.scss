@@ -249,3 +249,49 @@ input {
     border-bottom: 1px solid $gray-lighter;
   }
 }
+
+.book_copy_form {
+  overflow: hidden;
+}
+
+/* Book Copies */
+
+.book_copies {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 50px 0;
+    border-top: 1px solid #e8e8e8;
+    display: block;
+  }
+  .book {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px;
+  }
+  .avatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 10px;
+    height: 50px;
+    width: auto;
+  }
+}
+
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
+  }
+}
+
+span.picture {
+  margin-top: 10px;
+  input {
+    border: 0;
+  }
+}
