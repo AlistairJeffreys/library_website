@@ -1,6 +1,6 @@
 class BookCopiesController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
-  before_action :admin_user, only: [:create, :destroy]
+  before_action :logged_in_user, only: [:create, :destroy, :reservers]
+  before_action :admin_user, only: [:create, :destroy, :reservers]
   
   def create
     if params[:book_copy].nil?
@@ -21,6 +21,14 @@ class BookCopiesController < ApplicationController
     flash[:success] = "Book copy deleted"
     redirect_to request.referrer || root_url
   end
+  
+  def reservers
+    @title = "Reservers"
+    @book_copy = BookCopy.find(params[:id])
+    @users = @book_copy.reservers.paginate(page: params[:page])
+    render 'show_reservers'
+  end
+    
   
   private
   

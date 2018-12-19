@@ -11,6 +11,20 @@
         <br>
         Library Card Number: <%= @user.library_card_number %>
       </p>
+      <section class="stats">
+        <%= render 'shared/user_stats' %>
+      </section>
     </section>
   </aside>
+  <% if @user == current_user %> 
+    <div class="col-md-8">
+      <h3><%= @title %></h3>
+      <% if @book_copies.any? %>
+        <ul class="book_copies reserve">
+          <%= render @book_copies %>
+        </ul>
+        <%= will_paginate @book_copies %>
+      <% end %>
+    </div>
+  <% end %>
 </div>

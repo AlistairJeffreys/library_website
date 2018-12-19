@@ -95,4 +95,15 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
   
+  test "should reserve and unreserve a book copy" do
+    kathy = users(:kathy)
+    book_copy_one = book_copies(:book_copy_one)
+    assert_not kathy.reserving?(book_copy_one)
+    kathy.reserve(book_copy_one)
+    assert kathy.reserving?(book_copy_one)
+    assert book_copy_one.reservers.include?(kathy)
+    kathy.unreserve(book_copy_one)
+    assert_not kathy.reserving?(book_copy_one)
+  end
+  
 end

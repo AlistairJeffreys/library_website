@@ -1,0 +1,14 @@
+<% @user ||= current_user %>
+<div class="stats">
+  <% if logged_in? && current_user.admin? %>
+    <a href="<%= reserving_user_path(@user) %>">
+  <% else %>
+    <a href="#">
+  <% end %>
+    Reserving
+    <strong id="reserving" class="stat">
+      <%= @user.reserving.count %>
+    </strong>
+     books
+  </a>
+</div>

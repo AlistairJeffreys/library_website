@@ -1,6 +1,7 @@
 <li id="book_copy-<%= book_copy.id %>">
   <%= link_to book_image_for(book_copy.book), book_copy.book %>
-  <span class="book"><%= link_to book_copy.book.title, book_copy.book %></span>
+  <% name = book_copy.book.title + " " + book_copy.id.to_s %>
+  <span class="book"><%= link_to name, book_copy.book %></span>
   <span class="timestamp">
     Acquired <%= time_ago_in_words(book_copy.created_at) %> ago.
     <% if logged_in? && current_user.admin? %>
@@ -8,4 +9,11 @@
                                        data: { confirm: "Are you sure?" } %>
     <% end %>
   </span>
+  <% if logged_in? %>
+    <section class="stats">
+      <% @book_copy = book_copy %>
+      <%= render 'shared/book_copy_stats' %>
+      <%= render 'book_copies/reserve_form' %>
+    </section>
+  <% end %>
 </li>

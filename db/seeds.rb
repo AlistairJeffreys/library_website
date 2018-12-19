@@ -46,3 +46,9 @@ books = Book.order(:created_at)
 10.times do
   books.each { |book| book.book_copies.create! }
 end
+
+# Reserving relationships
+users = User.all
+user = users.first
+book_copies = BookCopy.all
+book_copies.each { |book_copy| user.reserve(book_copy) }

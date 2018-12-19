@@ -4,6 +4,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:kate)
     @other_user = users(:kevin)
+    @book_copy = book_copies(:book_copy_one)
   end
   
   test "should redirect index when not logged in" do
@@ -62,6 +63,28 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference 'User.count' do
       delete user_path(@user)
     end
+    assert_redirected_to root_url
+  end
+  
+  test "should redirect reserving when not logged in" do
+    get reserving_user_path(@user)
+    assert_redirected_to login_url
+  end
+  
+  test "should redirect reserving when not logged in as a non-admin" do
+    log_in_as(@other_user)
+    get reserving_user_path(@user)
+    assert_redirected_to root_url
+  end
+  
+  test "should redirect reservers when not logged in" do
+    get reservers_book_copy_path(@book_copy)
+    assert_redirected_to login_url
+  end
+  
+  test "should redirect reservers when logged in as a non-admin" do
+    log_in_as(@other_user)
+    get reservers_book_copy_path(@book_copy)
     assert_redirected_to root_url
   end
 

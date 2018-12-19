@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+  has_many :active_relationships, class_name: "Reservation",
+                                  foreign_key: "user_id",
+                                  dependent: :destroy
+  has_many :reserving, through: :active_relationships, source: :book_copy
+  
   before_save { email.downcase! }
   validates :name,  presence: true, length: { maximum: 40 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -13,5 +18,20 @@ class User < ApplicationRecord
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
+  end
+  
+  # Reserve a book copy
+  def reserve(book_copy)
+    reserving << book_copy
+  end
+  
+  # Unreserving a book copy
+  def unreserve(book_copy)
+    reserving.delete(book_copy)
+  end
+  
+  # Returns true if the current user is reserving the book copy
+  def reserving?(book_copy)
+    reserving.include?(book_copy)
   end
 end

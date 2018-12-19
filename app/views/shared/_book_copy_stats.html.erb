@@ -1,0 +1,13 @@
+<% @book_copy %>
+<div class="stats">
+  <% if logged_in? && current_user.admin? %>
+    <a href="<%= reservers_book_copy_path(@book_copy) %>">
+  <% else %>
+    <a href="#">
+  <% end %>
+    Number of reservations: 
+    <strong id="reservers" class="stat">
+      <%= @book_copy.reservers.count %>
+    </strong>
+  </a>
+</div>

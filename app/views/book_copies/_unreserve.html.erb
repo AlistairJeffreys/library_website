@@ -1,0 +1,4 @@
+<%= form_for(current_user.active_relationships.find_by(book_copy_id: @book_copy.id),
+             html: { method: :delete }) do |f| %>
+  <%= f.submit "Unreserve", class: "btn" %>
+<% end %>

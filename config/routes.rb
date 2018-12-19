@@ -10,7 +10,16 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   get 'books/new'
-  resources :users
+  resources :users do
+    member do
+      get :reserving
+    end
+  end
   resources :books
-  resources :book_copies, only: [:create, :destroy]
+  resources :book_copies, only: [:create, :destroy] do
+    member do
+      get :reservers
+    end
+  end
+  resources :reservations, only: [:create, :destroy]
 end
