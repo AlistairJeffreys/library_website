@@ -18,13 +18,16 @@ class BooksCreationTest < ActionDispatch::IntegrationTest
     assert_select 'div.alert'
   end
   
-  test "valid signup information" do
+  test "valid book information" do
     log_in_as(@user)
     get books_new_path
+    assert_select 'input[type=file]'
+    picture = fixture_file_upload('test/fixtures/logo.png', 'image/png')
     assert_difference 'Book.count', 1 do
       post books_path, params: { book: { title: "Test Book",
                                          isbn: 1234567890,
-                                         publication_date: "2018" } }
+                                         publication_date: "2018",
+                                         picture: picture } }
     end
     follow_redirect!
     assert_template 'books/show'

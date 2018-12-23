@@ -21,6 +21,8 @@ class BooksEditTest < ActionDispatch::IntegrationTest
     get edit_book_path(@book)
     log_in_as(@user)
     assert_redirected_to edit_book_path(@book)
+    follow_redirect!
+    assert_select 'input[type=file]'
     title = "KJ Bible"
     isbn = "4242424242"
     author = "God"
@@ -28,13 +30,15 @@ class BooksEditTest < ActionDispatch::IntegrationTest
     genre = "Non-fiction"
     publication_date = "1918"
     publisher = "C of E"
+    picture = fixture_file_upload('test/fixtures/logo.png', 'image/png')
     patch book_path(@book), params: { book: { title: title,
                                               isbn: isbn,
                                               author: author,
                                               description: description,
                                               genre: genre,
                                               publication_date: publication_date,
-                                              publisher: publisher } }
+                                              publisher: publisher,
+                                              picture: picture } }
     assert_not flash.empty?
     assert_redirected_to @book
     @book.reload
