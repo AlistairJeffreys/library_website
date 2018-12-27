@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   get 'books/new'
+  get 'authors/new'
   resources :users do
     member do
       get :reserving
@@ -22,4 +23,5 @@ Rails.application.routes.draw do
     end
   end
   resources :reservations, only: [:create, :destroy]
+  resources :authors
 end

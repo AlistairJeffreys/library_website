@@ -1,0 +1,23 @@
+<% provide(:title, @author.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="author_info">
+      <h1>
+        <%= author_icon %>
+        <%= @author.name %>
+      </h1>
+      <ul>
+        <% if @author.birth_date && @author.death_date %>
+          <li><%= @author.birth_date.year.to_s + " - " + @author.death_date.year.to_s %></li>
+        <% elsif @author.birth_date %>
+          <li><%= "Born " + @author.birth_date.year.to_s %></li>
+        <% elsif @author.death_date %>
+          <li><%= "Died " + @author.death_date.year.to_s %></li>
+        <% end %>
+        <% if logged_in? && current_user.admin? %>
+          <%= link_to "Edit", edit_author_path(@author) %>
+        <% end %>
+      </ul>
+    </section>
+  </aside>
+</div>

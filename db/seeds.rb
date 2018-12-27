@@ -17,6 +17,19 @@ User.create!(name: "Example User",
                 password_confirmation: password )
  end
  
+ Author.create!(name: "Example Author",
+                birth_date: DateTime.strptime("1918", '%Y'),
+                death_date: DateTime.strptime("2018", '%Y'))
+              
+100.times do |n|
+  name = "Author" + n.to_s
+  birth_date =  DateTime.strptime("1918", '%Y')
+  death_date = DateTime.strptime("2018", '%Y')
+  Author.create!(name: name,
+                 birth_date: birth_date,
+                 death_date: death_date )
+end
+ 
  Book.create!(title: "The Battle of Austerlitz",
               author: "Charles River Editors",
               isbn: 9781492923824,

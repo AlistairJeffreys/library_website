@@ -1,0 +1,27 @@
+charles:
+  name: Charles Dickins
+  birth_date: <%= DateTime.strptime("1818", '%Y') %>
+  death_date: <%= DateTime.strptime("1868", '%Y') %>
+  
+calvin:
+  name: Calvin Dickens
+  birth_date: <%= DateTime.strptime("1918", '%Y') %>
+  death_date: <%= DateTime.strptime("1968", '%Y') %>
+  
+clara:
+  name: Clara Dickens
+  birth_date: <%= DateTime.strptime("1918", '%Y') %>
+  death_date: <%= DateTime.strptime("1968", '%Y') %>
+  
+cletus:
+  name: Cletus Dickens
+  birth_date: <%= DateTime.strptime("1918", '%Y') %>
+  death_date: <%= DateTime.strptime("1968", '%Y') %>
+  
+<% 30.times do |n| %>
+user_<%= n %>:
+  name: <%= "Author #{n}" %>
+  birth_date: <%= DateTime.strptime("1918", '%Y') %>
+  death_date: <%= DateTime.strptime("1968", '%Y') %>
+<% end %>
+  

@@ -1,0 +1,25 @@
+<% provide(:title, 'Creare new author') %>
+<h1>Create new author</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@author) do |f| %>
+      <%= render 'shared/author_error_messages' %>
+    
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+      
+      <%= f.label :birth_date %>
+      <% birth_options = (Time.zone.now.year - 150)..(Time.zone.now.year + 1) %>
+      <% birth_options = birth_options.to_a.unshift('Unknown') %>
+      <%= f.select :birth_date, birth_options, class: 'form-control' %>
+      
+      <%= f.label :death_date %>
+      <% death_options = (Time.zone.now.year - 150)..(Time.zone.now.year + 1) %>
+      <% death_options = death_options.to_a.unshift('Still Alive') %>
+      <%= f.select :death_date, death_options, class: 'form-control' %>
+      
+      <%= f.submit "Create author", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

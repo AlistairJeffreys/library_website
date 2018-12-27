@@ -1,0 +1,11 @@
+<% provide(:title, 'All authors') %>
+<h1>All authors</h1>
+<%= link_to "Add new author", authors_new_path %>
+
+<%= will_paginate %>
+
+<ul class="authors">
+  <%= render @authors %>
+</ul>
+
+<%= will_paginate %>
