@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(version: 2018_12_28_094859) do
     t.datetime "updated_at", null: false
     t.string "picture"
     t.integer "author_id"
-    t.index ["author_id", "created_at"], name: "index_books_on_author_id_and_created_at"
     t.index ["author_id"], name: "index_books_on_author_id"
     t.index ["isbn"], name: "index_books_on_isbn", unique: true
+    t.index [nil, "created_at"], name: "index_books_on_author_and_created_at"
   end
 
   create_table "reservations", force: :cascade do |t|
