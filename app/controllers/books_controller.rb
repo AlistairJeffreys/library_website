@@ -16,6 +16,7 @@ class BooksController < ApplicationController
   end
   
   def create
+    named_author_to_model
     publication_string_to_date
     @book = Book.new(book_params)
     if @book.save
@@ -31,6 +32,7 @@ class BooksController < ApplicationController
   end
   
   def update
+    named_author_to_model
     publication_string_to_date
     @book = Book.find(params[:id])
     if @book.update_attributes(book_params)
@@ -50,7 +52,7 @@ class BooksController < ApplicationController
   private
   
     def book_params
-      params.require(:book).permit(:isbn, :title, :author, :description, :genre,
+      params.require(:book).permit(:isbn, :title, :author_id, :description, :genre,
                                    :publication_date, :publisher, :picture)
     end
     
@@ -58,6 +60,17 @@ class BooksController < ApplicationController
       if params[:book][:publication_date]  
         publication_date = DateTime.strptime(params[:book][:publication_date], "%Y")
         params[:book][:publication_date] = publication_date
+      end
+    end
+    
+    def named_author_to_model
+      if params[:book][:author]
+        if params[:book][:author] == "Unknown"
+          params[:book][:author_id] = nil
+        else
+          author_model = Author.find_by(name: params[:book][:author])
+          params[:book][:author_id] = author_model.id
+        end
       end
     end
     

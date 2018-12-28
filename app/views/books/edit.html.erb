@@ -10,7 +10,8 @@
       <%= f.text_field :title, class: 'form-control' %>
       
       <%= f.label :author %>
-      <%= f.text_field :author, class: 'form-control' %>
+      <% authors = Author.all.map { |author| author.name } %>
+      <%= f.select :author, authors, class: 'form-control' %>
       
       <%= f.label :isbn %>
       <%= f.number_field :isbn, class: 'form-control' %>

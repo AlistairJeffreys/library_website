@@ -3,7 +3,8 @@ require 'test_helper'
 class BookTest < ActiveSupport::TestCase
   
   def setup
-    @book = Book.new(isbn: 1234567890123, title: "Adventure in Suffolk", author: "A Mann")
+    @author = authors(:charles)
+    @book = @author.books.build(isbn: 1234567890123, title: "Adventure in Suffolk")
   end
   
   test "should be valid" do
@@ -34,6 +35,10 @@ class BookTest < ActiveSupport::TestCase
     duplicate_book = @book.dup
     @book.save
     assert_not duplicate_book.valid?
+  end
+  
+  test "order should be most recent first" do
+    assert_equal books(:most_recent), Book.first
   end
   
 end

@@ -6,7 +6,9 @@
         <%= @book.title %>
       </h1>
       <ul>
-        <li><b>Author:</b> <%= @book.author %></li>
+        <% if @book.author %>
+          <li><b>Author:</b> <%= link_to @book.author.name, @book.author %></li>
+        <% end %>
         <li><b>ISBN:</b> <%= @book.isbn %></li>
         <li><b>Description:</b> <%= @book.description %></li>
         <li><b>Genre:</b> <%= @book.genre %></li>

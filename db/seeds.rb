@@ -17,7 +17,7 @@ User.create!(name: "Example User",
                 password_confirmation: password )
  end
  
- Author.create!(name: "Example Author",
+ Author.create!(name: "Unknown Author",
                 birth_date: DateTime.strptime("1918", '%Y'),
                 death_date: DateTime.strptime("2018", '%Y'))
               
@@ -31,6 +31,7 @@ User.create!(name: "Example User",
 end
  
  Book.create!(title: "The Battle of Austerlitz",
+              author: Author.find_by(name: "Unknown Author"),
               isbn: 9781492923824,
               description: "",
               genre: "History",
@@ -40,12 +41,14 @@ end
 100.times do |n|
   title = Faker::Book.title
   isbn = Faker::Number.number(10).to_i + n
+  author = Author.find_by(name: "Author" + n.to_s)
   description = Faker::GameOfThrones.quote
   genre = Faker::Book.genre
   publication_date = DateTime.strptime("2018", '%Y')
   publisher = Faker::Book.publisher
   Book.create!(title: title,
                isbn: isbn,
+               author: author,
                description: description,
                genre: genre,
                publication_date: publication_date,

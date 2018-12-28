@@ -6,7 +6,9 @@
                                   data: { confirm: "Are you sure?" } %>
   <% end %>
   <ul>
-    <li><b>Author:</b> <%= book.author %></li>
+    <% if book.author %>
+      <li><b>Author:</b> <%= book.author.name %></li>
+    <% end %>
     <li><b>Genre:</b> <%= book.genre %></li>
     <% if book.book_copies.any? %>
       <li>Book Copies (<%= book.book_copies.count %>)</li>

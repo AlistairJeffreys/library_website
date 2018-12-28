@@ -20,4 +20,16 @@
       </ul>
     </section>
   </aside>
+  <div class="col-md-8">
+    <% if logged_in? && current_user.admin? %>
+      <p><%= link_to "Add new Book", books_new_path %></p>
+    <% end %>
+    <% if @author.books.any? %>
+      <h3>(<%= @author.books.count %>) Books</h3>
+      <ol class="books">
+        <%= render @books %>
+      </ol>
+      <%= will_paginate @books %>
+    <% end %>
+  </div>
 </div>

@@ -4,6 +4,7 @@ class BooksCreationTest < ActionDispatch::IntegrationTest
   
   def setup
     @user = users(:kate)
+    @author = authors(:charles)
   end
   
   test "invalid book information" do
@@ -26,6 +27,7 @@ class BooksCreationTest < ActionDispatch::IntegrationTest
     assert_difference 'Book.count', 1 do
       post books_path, params: { book: { title: "Test Book",
                                          isbn: 1234567890,
+                                         author: @author.name,
                                          publication_date: "2018",
                                          picture: picture } }
     end

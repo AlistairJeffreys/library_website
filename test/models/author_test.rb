@@ -19,4 +19,12 @@ class AuthorTest < ActiveSupport::TestCase
     @author.name = "a" * 51
     assert_not @author.valid?
   end
+  
+  test "associated books should not be destroyed" do
+    @author.save
+    @author.books.create!(title: "A Book", isbn: 1234567890123)
+    assert_no_difference 'Book.count', -1 do
+      @author.destroy
+    end
+  end
 end

@@ -8,6 +8,7 @@ class AuthorsController < ApplicationController
   
   def show
     @author = Author.find(params[:id])
+    @books = @author.books.paginate(page: params[:page])
   end
   
   def new

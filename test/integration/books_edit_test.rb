@@ -5,6 +5,7 @@ class BooksEditTest < ActionDispatch::IntegrationTest
   def setup
     @book = books(:book_one)
     @user = users(:kate)
+    @author = authors(:charles)
   end
   
   test "unsuccessful edit" do
@@ -12,7 +13,8 @@ class BooksEditTest < ActionDispatch::IntegrationTest
     get edit_book_path(@book)
     assert_template 'books/edit'
     patch book_path(@book), params: { book: { title: "",
-                                              isbn: "hey" } }
+                                              isbn: "hey",
+                                              author: @author.name } }
     assert_template 'books/edit'
     assert_select 'div.alert', "The form contains 2 errors"
   end
@@ -25,7 +27,7 @@ class BooksEditTest < ActionDispatch::IntegrationTest
     assert_select 'input[type=file]'
     title = "KJ Bible"
     isbn = "4242424242"
-    author = "God"
+    author = @author
     description = "Really?"
     genre = "Non-fiction"
     publication_date = "1918"
@@ -33,7 +35,7 @@ class BooksEditTest < ActionDispatch::IntegrationTest
     picture = fixture_file_upload('test/fixtures/logo.png', 'image/png')
     patch book_path(@book), params: { book: { title: title,
                                               isbn: isbn,
-                                              author: author,
+                                              author: author.name,
                                               description: description,
                                               genre: genre,
                                               publication_date: publication_date,
