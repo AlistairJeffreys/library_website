@@ -13,15 +13,16 @@ Rails.application.routes.draw do
   get 'authors/new'
   resources :users do
     member do
-      get :reserving
+      get :reserving, :borrowing
     end
   end
   resources :books
   resources :book_copies, only: [:create, :destroy] do
     member do
-      get :reservers
+      get :reservers, :borrowers
     end
   end
   resources :reservations, only: [:create, :destroy]
+  resources :borrows, only: [:create, :destroy]
   resources :authors
 end

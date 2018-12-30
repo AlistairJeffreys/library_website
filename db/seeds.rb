@@ -65,3 +65,9 @@ users = User.all
 user = users.first
 book_copies = BookCopy.all
 book_copies.each { |book_copy| user.reserve(book_copy) }
+
+# Borrowing relationships
+users = User.all
+user = users.first
+book_copies = BookCopy.all
+book_copies.each { |book_copy| user.borrow(book_copy) }

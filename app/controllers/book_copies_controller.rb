@@ -1,6 +1,6 @@
 class BookCopiesController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy, :reservers]
-  before_action :admin_user, only: [:create, :destroy, :reservers]
+  before_action :logged_in_user, only: [:create, :destroy, :reservers, :borrowers]
+  before_action :admin_user, only: [:create, :destroy, :reservers, :borrowers]
   
   def create
     if params[:book_copy].nil?
@@ -27,6 +27,13 @@ class BookCopiesController < ApplicationController
     @book_copy = BookCopy.find(params[:id])
     @users = @book_copy.reservers.paginate(page: params[:page])
     render 'show_reservers'
+  end
+  
+  def borrowers
+    @title = "Borrowers"
+    @book_copy = BookCopy.find(params[:id])
+    @users = @book_copy.borrowers.paginate(page: params[:page])
+    render 'show_borrowers'
   end
     
   

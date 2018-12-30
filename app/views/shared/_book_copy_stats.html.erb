@@ -10,4 +10,14 @@
       <%= @book_copy.reservers.count %>
     </strong>
   </a>
+  <% if logged_in? && current_user.admin? %>
+    <a href="<%= borrowers_book_copy_path(@book_copy) %>">
+  <% else %>
+    <a href="#">
+  <% end %>
+    Number of borrowers: 
+    <strong id="borrowers" class="stat">
+      <%= @book_copy.borrowers.count %>
+    </strong>
+  </a>
 </div>

@@ -2,7 +2,11 @@ class User < ApplicationRecord
   has_many :active_relationships, class_name: "Reservation",
                                   foreign_key: "user_id",
                                   dependent: :destroy
+  has_many :borrow_relationships, class_name: "Borrow",
+                                  foreign_key: "user_id",
+                                  dependent: :destroy
   has_many :reserving, through: :active_relationships, source: :book_copy
+  has_many :borrowing, through: :borrow_relationships, source: :book_copy
   
   before_save { email.downcase! }
   validates :name,  presence: true, length: { maximum: 40 }
@@ -33,5 +37,20 @@ class User < ApplicationRecord
   # Returns true if the current user is reserving the book copy
   def reserving?(book_copy)
     reserving.include?(book_copy)
+  end
+  
+  # Borrows a book copy.
+  def borrow(book_copy)
+    borrowing << book_copy
+  end
+  
+  # Unborrow a book copy.
+  def unborrow(book_copy)
+    borrowing.delete(book_copy)
+  end
+  
+  # Returns true if the current user is borrowing the book copy.
+  def borrowing?(book_copy)
+    borrowing.include?(book_copy)
   end
 end

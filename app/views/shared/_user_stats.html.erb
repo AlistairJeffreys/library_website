@@ -11,4 +11,15 @@
     </strong>
      books
   </a>
+  <% if logged_in? && current_user.admin? %>
+    <a href="<%= borrowing_user_path(@user) %>">
+  <% else %>
+    <a href="#">
+  <% end %>
+    Borrowing
+    <strong id="borrowing" class="stat">
+      <%= @user.borrowing.count %>
+    </strong>
+     books
+  </a>
 </div>

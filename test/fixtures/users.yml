@@ -22,6 +22,7 @@ kathy:
   email: kathy@example.com
   library_card_number: 45678901234567
   password_digest: <%= User.digest('password') %>
+  admin: true
   
 <% 30.times do |n| %>
 user_<%= n %>:

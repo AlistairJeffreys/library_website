@@ -1,0 +1,15 @@
+one:
+  user: kathy
+  book_copy: book_copy_one
+  
+two:
+  user: kathy
+  book_copy: book_copy_two
+  
+three:
+  user: kerry
+  book_copy: book_copy_one
+  
+four:
+  user: kevin
+  book_copy: book_copy_two

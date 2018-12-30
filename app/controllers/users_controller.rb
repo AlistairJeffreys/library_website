@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :reserving]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :reserving, :borrowing]
   before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user, only: [:destroy, :reserving]
+  before_action :admin_user, only: [:destroy, :reserving, :borrowing]
   
   def index
     @users = User.paginate(page: params[:page])
@@ -9,7 +9,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @book_copies = @user.reserving.paginate(page: params[:page])
+    @book_copies_reserving = @user.reserving.paginate(page: params[:page])
+    @book_copies_borrowing = @user.borrowing.paginate(page: params[:page])
   end
   
   def new
@@ -52,6 +53,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @book_copies = @user.reserving.paginate(page: params[:page])
     render 'show_reserving'
+  end
+  
+  def borrowing
+    @title = "Borrowing"
+    @user = User.find(params[:id])
+    @book_copies = @user.borrowing.paginate(page: params[:page])
+    render 'show_borrowing'
   end
   
   private

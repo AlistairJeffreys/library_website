@@ -18,12 +18,21 @@
   </aside>
   <% if @user == current_user %> 
     <div class="col-md-8">
-      <h3><%= @title %></h3>
-      <% if @book_copies.any? %>
-        <ul class="book_copies reserve">
-          <%= render @book_copies %>
+      <h3> Borrowing </h3>
+      <% if @book_copies_borrowing.any? %>
+        <ul class="book_copies borrow">
+          <%= render @book_copies_borrowing %>
         </ul>
-        <%= will_paginate @book_copies %>
+        <%= will_paginate @book_copies_borrowing %>
+      <% end %>
+    </div>  
+    <div class="col-md-8">
+      <h3> Reserving </h3>
+      <% if @book_copies_reserving.any? %>
+        <ul class="book_copies reserve">
+          <%= render @book_copies_reserving %>
+        </ul>
+        <%= will_paginate @book_copies_reserving %>
       <% end %>
     </div>
   <% end %>

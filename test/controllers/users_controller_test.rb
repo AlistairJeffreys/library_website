@@ -87,5 +87,27 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get reservers_book_copy_path(@book_copy)
     assert_redirected_to root_url
   end
+  
+  test "should redirect borrowing when not logged in" do
+    get borrowing_user_path(@user)
+    assert_redirected_to login_url
+  end
+  
+  test "should redirect borrowing when not logged in as a non-admin" do
+    log_in_as(@other_user)
+    get borrowing_user_path(@user)
+    assert_redirected_to root_url
+  end
+  
+  test "should redirect borrowers when not logged in" do
+    get borrowers_book_copy_path(@book_copy)
+    assert_redirected_to login_url
+  end
+  
+  test "should redirect borrowers when logged in as a non-admin" do
+    log_in_as(@other_user)
+    get borrowers_book_copy_path(@book_copy)
+    assert_redirected_to root_url
+  end
 
 end
