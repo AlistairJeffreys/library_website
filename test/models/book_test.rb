@@ -4,7 +4,7 @@ class BookTest < ActiveSupport::TestCase
   
   def setup
     @author = authors(:charles)
-    @book = @author.books.build(isbn: 1234567890123, title: "Adventure in Suffolk")
+    @book = @author.books.build(isbn: 1234567890123, title: "Adventure in Springfield")
   end
   
   test "should be valid" do

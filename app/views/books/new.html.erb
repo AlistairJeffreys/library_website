@@ -23,7 +23,7 @@
       <%= f.text_field :genre, class: 'form-control' %>
       
       <%= f.label :publication_date %>
-      <%= f.select :publication_date, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), class: 'form-control' %>
+      <%= f.select :publication_date, (Time.zone.now.year - 300)..(Time.zone.now.year + 1), class: 'form-control' %>
       
       <%= f.label :publisher %>
       <%= f.text_field :publisher, class: 'form-control' %>

@@ -10,12 +10,12 @@
       <%= f.text_field :name, class: 'form-control' %>
       
       <%= f.label :birth_date %>
-      <% birth_options = (Time.zone.now.year - 150)..(Time.zone.now.year + 1) %>
+      <% birth_options = (Time.zone.now.year - 300)..(Time.zone.now.year + 1) %>
       <% birth_options = birth_options.to_a.unshift('Unknown') %>
       <%= f.select :birth_date, birth_options, class: 'form-control' %>
       
       <%= f.label :death_date %>
-      <% death_options = (Time.zone.now.year - 150)..(Time.zone.now.year + 1) %>
+      <% death_options = (Time.zone.now.year - 300)..(Time.zone.now.year + 1) %>
       <% death_options = death_options.to_a.unshift('Still Alive') %>
       <%= f.select :death_date, death_options, class: 'form-control' %>
       
