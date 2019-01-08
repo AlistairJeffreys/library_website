@@ -6,7 +6,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     @user = users(:kate)
   end
   
-  test "login with invalid information followed by logout" do
+  test "login with valid information followed by logout" do
     get login_path
     post login_path, params: { session: { email:    @user.email,
                                           password: 'password' } }
