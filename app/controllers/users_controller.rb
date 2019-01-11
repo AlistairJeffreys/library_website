@@ -4,7 +4,12 @@ class UsersController < ApplicationController
   before_action :admin_user, only: [:destroy, :reserving, :borrowing]
   
   def index
-    @users = User.paginate(page: params[:page])
+    search = search_params[:search]
+    if search      
+      @users = User.where(name: search).paginate(page: params[:page])
+    else
+      @users = User.paginate(page: params[:page])
+    end
   end
   
   def show
@@ -63,6 +68,10 @@ class UsersController < ApplicationController
   end
   
   private
+  
+  def search_params
+    params.permit(:search)
+  end
   
   def user_params
     params.require(:user).permit(:name, :email, :library_card_number,

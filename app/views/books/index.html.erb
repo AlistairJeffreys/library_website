@@ -4,6 +4,15 @@
   <p><%= link_to "Add new Book", books_new_path %></p>
 <% end %>
 
+<h4> Search </h4>
+<%= form_tag(books_path, method: :get) do %>
+  <%= text_field_tag(:search, params[:search]) %>
+  <%= submit_tag ("Search") %>
+<% end %>
+<%= form_tag(books_path, method: :get) do %>
+  <%= submit_tag ("Clear Search") %>
+<% end %>
+
 <%= will_paginate %>
 
 <ul class="books">

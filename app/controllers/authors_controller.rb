@@ -3,7 +3,12 @@ class AuthorsController < ApplicationController
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
   
   def index
-    @authors = Author.paginate(page: params[:page])
+    search = search_params[:search]
+    if search
+      @authors = Author.where(name: search).paginate(page: params[:page])
+    else
+      @authors = Author.paginate(page: params[:page])
+    end
   end
   
   def show
@@ -50,6 +55,10 @@ class AuthorsController < ApplicationController
   end
   
   private
+    
+    def search_params
+      params.permit(:search)
+    end
   
     def author_params
       params.require(:author).permit(:name, :birth_date, :death_date)

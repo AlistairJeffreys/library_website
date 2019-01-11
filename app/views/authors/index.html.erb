@@ -4,6 +4,15 @@
   <%= link_to "Add new author", authors_new_path %>
 <% end %>
 
+<h4> Search </h4>
+<%= form_tag(authors_path, method: :get) do %>
+  <%= text_field_tag(:search, params[:search]) %>
+  <%= submit_tag ("Search") %>
+<% end %>
+<%= form_tag(authors_path, method: :get) do %>
+  <%= submit_tag ("Clear Search") %>
+<% end %>
+
 <%= will_paginate %>
 
 <ul class="authors">

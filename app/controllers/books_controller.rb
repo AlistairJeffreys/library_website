@@ -3,7 +3,19 @@ class BooksController < ApplicationController
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
   
   def index
-    @books = Book.paginate(page: params[:page])
+    search = search_params[:search]
+    if search
+      
+      author_search = Author.find_by(name: search)
+      author_id = nil
+      if author_search
+        author_id = author_search.id
+      end
+      
+      @books = Book.where(title: search).or(Book.where(genre: search)).or(Book.where(author_id: author_id)).paginate(page: params[:page])
+    else
+      @books = Book.paginate(page: params[:page])
+    end
   end
   
   def show
@@ -50,6 +62,10 @@ class BooksController < ApplicationController
   end
   
   private
+  
+    def search_params
+      params.permit(:search)
+    end
   
     def book_params
       params.require(:book).permit(:isbn, :title, :author_id, :description, :genre,
